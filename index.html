@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ben@portfolio:~$</title>
+  <meta name="description" content="Projects by Ben Fortenberry — hosted on Netlify, backed by GitHub." />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="terminal">
+    <!-- window chrome -->
+    <div class="term-bar">
+      <span class="term-dot term-dot--red"></span>
+      <span class="term-dot term-dot--yellow"></span>
+      <span class="term-dot term-dot--green"></span>
+      <span class="term-title">ben@portfolio: ~/projects</span>
+    </div>
+
+    <div class="term-body">
+      <!-- banner -->
+      <pre class="banner" aria-label="Ben Fortenberry">  ____  _____ _   _
+ | __ )| ____| \ | |
+ |  _ \|  _| |  \| |
+ | |_) | |___| |\  |
+ |____/|_____|_| \_|
+  _____ ___  ____ _____ _____ _   _ ____  _____ ____  ______   __
+ |  ___/ _ \|  _ \_   _| ____| \ | | __ )| ____|  _ \|  _ \ \ / /
+ | |_ | | | | |_) || | |  _| |  \| |  _ \|  _| | |_) | |_) \ V /
+ |  _|| |_| |  _ < | | | |___| |\  | |_) | |___|  _ <|  _ < | |
+ |_|   \___/|_| \_\|_| |_____|_| \_|____/|_____|_| \_\_| \_\|_|</pre>
+
+      <!-- intro prompt -->
+      <div class="line"><span class="prompt">ben@portfolio</span><span class="path">:~$</span> <span class="cmd">whoami</span></div>
+      <div class="out">Developer. A collection of things I've built and shipped.</div>
+
+      <div class="line"><span class="prompt">ben@portfolio</span><span class="path">:~$</span> <span class="cmd">cat links.txt</span></div>
+      <div class="out links">
+        <a href="https://github.com/benfortenberry" target="_blank" rel="noopener">→ github.com/benfortenberry</a>
+        <a href="https://www.linkedin.com/in/ben-fortenberry/" target="_blank" rel="noopener">→ linkedin.com/in/ben-fortenberry</a>
+      </div>
+
+      <!-- projects command -->
+      <div class="line"><span class="prompt">ben@portfolio</span><span class="path">:~$</span> <span class="cmd">ls -la projects/</span></div>
+
+      <div id="projects" class="projects">
+        <div id="loading" class="out">loading<span class="cursor">█</span></div>
+      </div>
+
+      <!-- trailing live prompt -->
+      <div class="line prompt-live"><span class="prompt">ben@portfolio</span><span class="path">:~$</span> <span class="cursor">█</span></div>
+    </div>
+  </div>
+
+  <script src="main.js"></script>
+</body>
+</html>

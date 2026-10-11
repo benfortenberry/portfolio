@@ -1,0 +1,249 @@
+/* ------------------------------------------------------------------
+   Terminal / TUI theme — modern terminal look.
+   Near-black background, phosphor-green + cyan accents, monospace,
+   box-drawing panels, blinking cursor. Edit the vars to recolor.
+------------------------------------------------------------------ */
+:root {
+  --bg: #0b0e0c;          /* near-black, faint green cast */
+  --panel-bg: #0f1511;    /* panel fill */
+  --fg: #d7e3da;          /* soft off-white text */
+  --dim: #6c7a70;         /* dim/comment gray-green */
+  --green: #3ef08b;       /* phosphor green (primary accent) */
+  --cyan: #4fd6ff;        /* cyan (secondary accent) */
+  --amber: #ffcb6b;       /* amber (keys / highlights) */
+  --red: #ff6b6b;         /* errors */
+  --mono: "Cascadia Mono", "JetBrains Mono", "Fira Code", ui-monospace,
+          "SF Mono", Menlo, Consolas, "Courier New", monospace;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html { background: #000; }
+
+body {
+  font-family: var(--mono);
+  background: var(--bg);
+  color: var(--fg);
+  line-height: 1.55;
+  font-size: 15px;
+  padding: 24px;
+  min-height: 100vh;
+}
+
+/* faint scanline texture — very subtle, not a gimmick */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.015) 0px,
+    rgba(255, 255, 255, 0.015) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+  z-index: 2;
+}
+
+/* ---------- Terminal window ---------- */
+.terminal {
+  max-width: 920px;
+  margin: 0 auto;
+  border: 1px solid #2a3630;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6);
+}
+
+.term-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  background: #141b17;
+  border-bottom: 1px solid #2a3630;
+}
+
+.term-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  display: inline-block;
+}
+.term-dot--red { background: #ff5f56; }
+.term-dot--yellow { background: #ffbd2e; }
+.term-dot--green { background: #27c93f; }
+
+.term-title {
+  margin-left: 10px;
+  color: var(--dim);
+  font-size: 0.85rem;
+}
+
+.term-body {
+  padding: 22px 24px 26px;
+  background: var(--bg);
+}
+
+/* ---------- Banner ---------- */
+.banner {
+  color: var(--green);
+  font-size: clamp(0.5rem, 2.1vw, 0.9rem);
+  line-height: 1.1;
+  margin-bottom: 20px;
+  text-shadow: 0 0 12px rgba(62, 240, 139, 0.35);
+  white-space: pre;
+  overflow-x: auto;
+}
+
+/* ---------- Prompt lines ---------- */
+.line {
+  margin-top: 14px;
+  word-break: break-word;
+}
+
+.prompt { color: var(--green); font-weight: 700; }
+.path { color: var(--cyan); }
+.cmd { color: var(--fg); }
+
+.out {
+  color: var(--dim);
+  margin: 4px 0 2px;
+}
+
+.out.links {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.links a,
+.out a {
+  color: var(--cyan);
+  text-decoration: none;
+}
+.links a:hover,
+.out a:hover {
+  color: var(--green);
+  text-decoration: underline;
+}
+
+.err { color: var(--red); }
+
+/* blinking cursor */
+.cursor {
+  color: var(--green);
+  animation: blink 1.05s steps(1) infinite;
+}
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+/* ---------- Project panels (TUI boxes) ---------- */
+.projects {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.panel {
+  --accent: var(--green);
+  color: var(--fg);
+  border: 1px solid var(--accent);
+  background: var(--panel-bg);
+}
+.panel:nth-child(3n + 1) { --accent: var(--green); }
+.panel:nth-child(3n + 2) { --accent: var(--cyan); }
+.panel:nth-child(3n + 3) { --accent: var(--amber); }
+
+/* title bar sits on the top edge, filled with the accent */
+.panel-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 5px 12px;
+  background: var(--accent);
+  color: var(--bg);
+  font-weight: 700;
+}
+
+.panel-num {
+  font-weight: 700;
+  opacity: 0.75;
+}
+
+.panel-title {
+  font-weight: 700;
+}
+
+.panel-year {
+  margin-left: auto;
+  font-weight: 700;
+  opacity: 0.75;
+}
+
+.panel-body {
+  padding: 14px 16px;
+}
+
+.field {
+  display: flex;
+  gap: 8px;
+  margin: 3px 0;
+  align-items: baseline;
+}
+
+.key {
+  color: var(--accent);
+  flex: 0 0 auto;
+  min-width: 52px;
+}
+
+.val { color: var(--fg); }
+
+.tags {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.tag { color: var(--dim); }
+
+/* command-style action links */
+.panel-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-top: 12px;
+}
+
+.run {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 700;
+}
+.run:hover {
+  background: var(--accent);
+  color: var(--bg);
+}
+
+.prompt-live {
+  margin-top: 20px;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 640px) {
+  body { padding: 10px; font-size: 14px; }
+  .term-body { padding: 16px 14px 20px; }
+  .key { min-width: 46px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cursor { animation: none; }
+}
