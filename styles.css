@@ -93,12 +93,38 @@ body::before {
 /* ---------- Banner ---------- */
 .banner {
   color: var(--green);
+  /* fallback size; main.js refines this to fit the box in any font */
   font-size: clamp(0.5rem, 2.1vw, 0.9rem);
   line-height: 1.1;
   margin-bottom: 20px;
   text-shadow: 0 0 12px rgba(62, 240, 139, 0.35);
   white-space: pre;
-  overflow-x: auto;
+  /* Not a scroll container: some fonts overhang the box by ~1px, which
+     produced a stray scrollbar with overflow:auto. */
+  overflow: visible;
+}
+
+/* each banner line becomes its own row (split in main.js) */
+.banner-row {
+  display: block;
+}
+
+/* boot: rows "print" top to bottom in chunky, character-like steps.
+   The negative insets in the end state keep the glow from being clipped. */
+.banner.animate .banner-row {
+  clip-path: inset(-1em 100% -1em -1em);
+  animation: row-print 0.3s steps(24, end) forwards;
+  animation-delay: calc(var(--r, 0) * 45ms);
+}
+@keyframes row-print {
+  to { clip-path: inset(-1em -1em -1em -1em); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .banner.animate .banner-row {
+    animation: none;
+    clip-path: none;
+  }
 }
 
 /* ---------- Prompt lines ---------- */

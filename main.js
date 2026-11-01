@@ -78,6 +78,65 @@ const prefersReducedMotion =
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
+// ---- ASCII banner: split into rows, fit to width, animate ----
+const BANNER_MAX_PX = 14.4; // desktop size (0.9rem), never grow past this
+const BANNER_ROW_DELAY = 45; // ms between rows (matches styles.css)
+const BANNER_ROW_DURATION = 300; // ms per row (matches styles.css)
+
+const banner = document.querySelector(".banner");
+let bannerRows = [];
+
+function splitBanner() {
+  if (!banner) return;
+  const lines = banner.textContent.replace(/\n+$/, "").split("\n");
+  banner.textContent = "";
+  lines.forEach((line, r) => {
+    const row = el("span", "banner-row", line);
+    row.style.setProperty("--r", r);
+    banner.appendChild(row);
+  });
+  bannerRows = Array.from(banner.children);
+}
+
+// Size the banner so its widest row fits the box, in whatever font loaded.
+function fitBanner() {
+  if (!banner || !bannerRows.length) return;
+  const REF = 20; // measure at a known size, then scale
+  banner.style.fontSize = REF + "px";
+  const range = document.createRange();
+  let widest = 0;
+  for (const row of bannerRows) {
+    if (!row.firstChild) continue;
+    range.selectNodeContents(row.firstChild); // text node: measures glyphs only
+    widest = Math.max(widest, range.getBoundingClientRect().width);
+  }
+  const avail = banner.clientWidth;
+  if (!widest || !avail) {
+    banner.style.fontSize = "";
+    return;
+  }
+  const size = Math.min(BANNER_MAX_PX, (REF * avail) / widest * 0.98);
+  banner.style.fontSize = size.toFixed(2) + "px";
+}
+
+splitBanner();
+fitBanner();
+if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitBanner);
+if (banner && "ResizeObserver" in window) {
+  new ResizeObserver(fitBanner).observe(banner.parentElement);
+} else {
+  window.addEventListener("resize", fitBanner);
+}
+
+// Start the banner print-in right away; boot() waits for it before typing.
+let bannerDone = Promise.resolve();
+if (banner && !prefersReducedMotion) {
+  banner.classList.add("animate");
+  const total =
+    (bannerRows.length - 1) * BANNER_ROW_DELAY + BANNER_ROW_DURATION + 120;
+  bannerDone = sleep(total);
+}
+
 // type a string into a .cmd span, char by char
 async function typeInto(cmdEl) {
   const text = cmdEl.dataset.cmd || "";
@@ -92,6 +151,7 @@ async function typeInto(cmdEl) {
 
 // Run the shell-session boot: reveal each step, typing commands as they appear.
 async function boot(projects) {
+  await bannerDone; // let the banner finish printing first
   const steps = Array.from(document.querySelectorAll("[data-step]"));
 
   for (const step of steps) {
