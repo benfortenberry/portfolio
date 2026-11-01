@@ -9,6 +9,16 @@
     "tech": "React / TypeScript / Go",
     "tags": ["in_use", "saas", "vite", "auth0", "stripe"]
   },
+    {
+    "title": "Aging Dragonflies",
+    "year": "2026",
+    "description": "",
+    "liveUrl": "https://agingdragonflies.netlify.app/",
+    "repoUrl": "https://github.com/benfortenberry/stories",
+    "repoPrivate": true,
+    "tech": "Next.js / React / TypeScript",
+    "tags": ["in_use", "client_work", "next_js", "tailwind"]
+  },
   {
     "title": "Global Compliance",
     "year": "2026",

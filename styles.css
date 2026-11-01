@@ -237,6 +237,57 @@ body::before {
   margin-top: 20px;
 }
 
+/* ---------- Boot sequence + reveal ---------- */
+/* While booting, step lines are hidden until the typewriter reaches them. */
+.booting [data-step] {
+  display: none;
+}
+.booting [data-step].shown {
+  display: block;
+}
+.booting .out.links.shown {
+  display: flex;
+}
+
+/* trailing live prompt hidden until the sequence finishes */
+.booting .prompt-live {
+  visibility: hidden;
+}
+
+/* hide the loading placeholder during the boot sequence */
+.booting #loading {
+  display: none;
+}
+
+/* a typing caret shown on the command currently being typed */
+.cmd.typing::after {
+  content: "█";
+  color: var(--green);
+  animation: blink 1.05s steps(1) infinite;
+}
+
+/* panels animate in (staggered via --i set in JS) */
+.panel.reveal {
+  opacity: 0;
+  transform: translateY(8px);
+  animation: panel-in 0.32s ease forwards;
+  animation-delay: calc(var(--i, 0) * 60ms);
+}
+@keyframes panel-in {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .panel.reveal {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}
+
 /* ---------- Responsive ---------- */
 @media (max-width: 640px) {
   body { padding: 10px; font-size: 14px; }

@@ -17,7 +17,7 @@ function link(className, label, href) {
   return a;
 }
 
-function renderProjects(projects) {
+function renderProjects(projects, animate) {
   const container = document.getElementById("projects");
   container.innerHTML = "";
 
@@ -27,7 +27,7 @@ function renderProjects(projects) {
   }
 
   projects.forEach((p, i) => {
-    const panel = el("article", "panel");
+    const panel = el("article", "panel" + (animate ? " reveal" : ""));
     panel.style.setProperty("--i", i);
 
     // ---- title bar ----
@@ -81,14 +81,74 @@ function renderProjects(projects) {
   });
 }
 
+// ---- boot sequence orchestration ----
+const prefersReducedMotion =
+  window.matchMedia &&
+  window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+
+// type a string into a .cmd span, char by char
+async function typeInto(cmdEl) {
+  const text = cmdEl.dataset.cmd || "";
+  cmdEl.classList.add("typing");
+  for (let i = 0; i < text.length; i++) {
+    cmdEl.textContent += text[i];
+    await sleep(22); // fast
+  }
+  cmdEl.classList.remove("typing");
+  await sleep(140); // brief pause after a command, before its output
+}
+
+// Run the shell-session boot: reveal each step, typing commands as they appear.
+async function boot(projects) {
+  const steps = Array.from(document.querySelectorAll("[data-step]"));
+
+  for (const step of steps) {
+    step.classList.add("shown");
+    const cmd = step.querySelector(".cmd[data-cmd]");
+    if (cmd) {
+      await typeInto(cmd);
+    } else {
+      await sleep(90); // output line settles briefly
+    }
+  }
+
+  // finally, "print" the project list with a staggered reveal
+  renderProjects(projects, true);
+  document.body.classList.remove("booting");
+}
+
+function instant(projects) {
+  // reduced-motion / fallback: fill commands and show everything at once
+  document.querySelectorAll(".cmd[data-cmd]").forEach((c) => {
+    c.textContent = c.dataset.cmd;
+  });
+  document.querySelectorAll("[data-step]").forEach((s) => s.classList.add("shown"));
+  renderProjects(projects, false);
+  document.body.classList.remove("booting");
+}
+
+document.body.classList.add("booting");
+
 fetch("projects.json")
   .then((res) => {
     if (!res.ok) throw new Error("Failed to load projects.json");
     return res.json();
   })
-  .then(renderProjects)
+  .then((projects) => {
+    if (prefersReducedMotion) {
+      instant(projects);
+    } else {
+      boot(projects);
+    }
+  })
   .catch((err) => {
     console.error(err);
+    document.body.classList.remove("booting");
+    document.querySelectorAll(".cmd[data-cmd]").forEach((c) => {
+      c.textContent = c.dataset.cmd;
+    });
     const c = document.getElementById("projects");
     if (c) c.innerHTML = '<div class="out err">error: could not load projects.json</div>';
   });
