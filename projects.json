@@ -2,121 +2,121 @@
   {
     "title": "AccrediTrack",
     "year": "2026",
+    "type": "saas",
     "description": "SaaS platform for tracking employee certifications and license renewals, with Auth0 login and Stripe billing.",
     "liveUrl": "https://accreditrack.com",
     "repoUrl": "https://github.com/benfortenberry/accredi-track-web",
     "repoPrivate": true,
-    "tech": "React / TypeScript / Go",
-    "tags": ["in_use", "saas", "vite", "auth0", "stripe"]
+    "tech": "React / TypeScript / Go"
   },
-    {
+  {
     "title": "Aging Dragonflies",
     "year": "2026",
-    "description": "",
+    "type": "writing",
+    "description": "Collection of short fiction",
     "liveUrl": "https://agingdragonflies.netlify.app/",
     "repoUrl": "https://github.com/benfortenberry/stories",
     "repoPrivate": true,
-    "tech": "Next.js / React / TypeScript",
-    "tags": ["in_use", "client_work", "next_js", "tailwind"]
+    "tech": "Next.js / React / TypeScript"
   },
   {
     "title": "Global Compliance",
     "year": "2026",
+    "type": "client",
     "description": "Marketing site for Global Compliance LLC, with a contact form wired up through Resend.",
     "liveUrl": "https://globalcompliancellc.com",
     "repoUrl": "https://github.com/benfortenberry/gc-website",
     "repoPrivate": true,
-    "tech": "Next.js / React / TypeScript",
-    "tags": ["in_use", "client_work", "next_js", "tailwind"]
+    "tech": "Next.js / React / TypeScript"
   },
   {
     "title": "PTAI Demo",
     "year": "2026",
+    "type": "demo",
     "description": "Commercial website demo for PTAI.",
     "liveUrl": "https://ptai-demo.netlify.app",
     "repoUrl": "https://github.com/benfortenberry/PTAI-Demo",
     "repoPrivate": true,
-    "tech": "Next.js / React",
-    "tags": ["demo", "client_work", "next_js", "tailwind"]
+    "tech": "Next.js / React"
   },
   {
     "title": "Prime",
     "year": "2025",
+    "type": "demo",
     "description": "Commercial website demo for Prime Technical Services.",
     "liveUrl": "https://prime-ts.netlify.app",
     "repoUrl": "https://github.com/benfortenberry/new_prime",
     "repoPrivate": true,
-    "tech": "Next.js / React",
-    "tags": ["demo", "client_work", "next_js", "tailwind"]
+    "tech": "Next.js / React"
   },
   {
     "title": "Space Breaker",
     "year": "2025",
+    "type": "game",
     "description": "A Breakout-style arcade game with 10 levels, power-ups, and sound, built on the Flame engine.",
     "liveUrl": "https://space-breaker.netlify.app",
     "repoUrl": "https://github.com/benfortenberry/space-breaker",
     "repoPrivate": false,
-    "tech": "Flutter / Dart / Flame",
-    "tags": ["learning", "game", "flutter", "cross_platform"]
+    "tech": "Flutter / Dart / Flame"
   },
   {
     "title": "Brewhaus",
     "year": "2025",
+    "type": "challenge",
     "description": "Find breweries near you, built as a Vue 3 single-page app.",
     "liveUrl": "https://brewhaus-ben.netlify.app",
     "repoUrl": "https://github.com/benfortenberry/brewhaus",
     "repoPrivate": false,
-    "tech": "Vue 3 / Vite / TypeScript",
-    "tags": ["coding_challenge", "vue", "api"]
+    "tech": "Vue 3 / Vite / TypeScript"
   },
   {
     "title": "Ben's Movie Finder",
     "year": "2025",
+    "type": "challenge",
     "description": "Search movies by title via the OMDb API and browse the results.",
     "liveUrl": "https://bensmoviefinder.netlify.app",
     "repoUrl": "https://github.com/benfortenberry/omdb-search",
     "repoPrivate": false,
-    "tech": "Vue 3 / Vuetify / TypeScript",
-    "tags": ["coding_challenge", "vue", "api"]
+    "tech": "Vue 3 / Vuetify / TypeScript"
   },
   {
     "title": "Everyday Holidays",
     "year": "2023",
+    "type": "side",
     "description": "Discover the quirky national days and offbeat holidays for any date of the year.",
     "liveUrl": "https://everyday-holidays-archive.netlify.app",
     "repoUrl": "https://github.com/benfortenberry/everyday-holidays-vue",
     "repoPrivate": false,
-    "tech": "Vue 3 / TypeScript",
-    "tags": ["side_project", "vue", "api"]
+    "tech": "Vue 3 / TypeScript"
   },
   {
     "title": "Maze of Monsters",
     "year": "2019",
+    "type": "game",
     "description": "Yabdib's Maze: a maze game built as a hybrid mobile app with Ionic and Cordova.",
     "liveUrl": "https://mazeofmonsters.netlify.app",
     "repoUrl": "https://github.com/benfortenberry/mazeofmonsters",
     "repoPrivate": false,
-    "tech": "Ionic / Angular / Cordova",
-    "tags": ["side_project", "game", "mobile", "cross_platform"]
+    "tech": "Ionic / Angular / Cordova"
   },
   {
     "title": "Last Desires",
     "year": "2018",
+    "type": "side",
     "description": "An attempt to build a social platform around funeral wishes, built as a hybrid mobile app with Ionic and Firebase.",
     "liveUrl": "https://lastdesires.netlify.app",
     "repoUrl": "https://github.com/benfortenberry/last-desires",
     "repoPrivate": true,
-    "tech": "Ionic / Angular / Firebase",
-    "tags": ["cross_platform", "mobile", "ionic", "firebase"]
+    "tech": "Ionic / Angular / Firebase"
   },
   {
     "title": "City Suggest",
     "year": "2016",
+    "type": "demo",
     "description": "A New Orleans venue finder: pick a type of place, a vibe, a time, and a price, and it suggests matching spots. Runs fully in the browser.",
     "liveUrl": "https://citysuggest.netlify.app",
     "repoUrl": "https://github.com/benfortenberry/City-Suggest",
     "repoPrivate": false,
-    "tech": "JavaScript / HTML",
-    "tags": ["demo", "static_site", "vanilla_js"]
+    "tech": "JavaScript / HTML"
   }
 ]

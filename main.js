@@ -35,6 +35,7 @@ function renderProjects(projects, animate) {
     const bar = el("div", "panel-bar");
     bar.appendChild(el("span", "panel-num", num));
     bar.appendChild(el("span", "panel-title", p.title));
+    if (p.type) bar.appendChild(el("span", "panel-type", `[${p.type}]`));
     if (p.year) bar.appendChild(el("span", "panel-year", p.year));
     panel.appendChild(bar);
 
@@ -52,17 +53,6 @@ function renderProjects(projects, animate) {
       const row = el("div", "field");
       row.appendChild(el("span", "key", "about "));
       row.appendChild(el("span", "val", p.description));
-      body.appendChild(row);
-    }
-
-    if (Array.isArray(p.tags) && p.tags.length) {
-      const row = el("div", "field");
-      row.appendChild(el("span", "key", "tags  "));
-      const tagWrap = el("span", "val tags");
-      for (const t of p.tags) {
-        tagWrap.appendChild(el("span", "tag", "#" + String(t).replace(/_/g, "-")));
-      }
-      row.appendChild(tagWrap);
       body.appendChild(row);
     }
 

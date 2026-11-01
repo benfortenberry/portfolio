@@ -207,13 +207,15 @@ body::before {
 
 .val { color: var(--fg); }
 
-.tags {
-  display: inline-flex;
-  flex-wrap: wrap;
-  gap: 10px;
+/* [type] label in the title bar, right-aligned beside the year */
+.panel-type {
+  margin-left: auto;
+  font-weight: 700;
+  opacity: 0.75;
 }
-
-.tag { color: var(--dim); }
+.panel-type + .panel-year {
+  margin-left: 0;
+}
 
 /* command-style action links */
 .panel-actions {
