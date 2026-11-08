@@ -90,6 +90,36 @@
     "tech": "Vue 3 / TypeScript"
   },
   {
+    "title": "Loan Dashboard Demo",
+    "year": "2022",
+    "type": "demo",
+    "description": "Concept for a dashboard for users to project loan payoff and manage payments",
+    "liveUrl": "https://loan-dashboard-demo.netlify.app/",
+    "repoUrl": "https://github.com/benfortenberry/everyday-holidays-vue",
+    "repoPrivate": true,
+    "tech": "Vue 3 / TypeScript"
+  },
+  {
+    "title": "LLEOM",
+    "year": "2020",
+    "type": "website",
+    "description": "Website for Louisiana Law Enfforcement Officer Memorial.",
+    "liveUrl": "https://lleom.org",
+    "repoUrl": "https://github.com/benfortenberry/lleom-vue3",
+    "repoPrivate": true,
+    "tech": "Vue 3 / Typescript"
+  },
+  {
+    "title": "Attiki Bar & Grill",
+    "year": "2020",
+    "type": "website",
+    "description": "Website for Attiki Bar & Grill.",
+    "liveUrl": "https://https://attiki.netlify.app",
+    "repoUrl": "https://github.com/benfortenberry/attiki-vue3",
+    "repoPrivate": true,
+    "tech": "Vue 3 / Typescript"
+  },
+  {
     "title": "Maze of Monsters",
     "year": "2019",
     "type": "game",
